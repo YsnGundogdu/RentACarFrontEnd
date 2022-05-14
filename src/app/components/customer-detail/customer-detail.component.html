@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-center">
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ad</th>
+      <th scope="col">Soyad</th>
+      <th scope="col">Email</th>
+      <th scope="col">Kimlik Numarası</th>
+      <th scope="col">Statü</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customerDetail of customerDetails">
+      <th scope="row">{{customerDetail.customerId}}</th>
+      <td>{{customerDetail.userFirstName}}</td>
+      <td>{{customerDetail.userLastName}}</td>
+      <td>{{customerDetail.userEmail}}</td>
+      <td>{{customerDetail.customerIdentityNumber}}</td>
+      <td>{{customerDetail.customerStatus}}</td>
+    </tr>
+  </tbody>
+
+</table>
+

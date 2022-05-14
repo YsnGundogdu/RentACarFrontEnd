@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-center">
+  <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<table *ngIf="dataLoaded==true" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Brand Name</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let brand of brands">
+      <th scope="row">{{brand.brandId}}</th>
+      <td>{{brand.brandName}}</td>
+      <td>{{brand.brandStatus}}</td>
+    </tr>
+  </tbody>
+
+</table>

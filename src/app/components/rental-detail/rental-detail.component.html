@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-center">
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ad Soyad</th>
+      <th scope="col">Araba Açıklaması</th>
+      <th scope="col">Alış Lokasyonu</th>
+      <th scope="col">Teslim Lokasyonu</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rentalDetail of rentalDetails">
+      <th scope="row">{{rentalDetail.rentalId}}</th>
+      <td>{{rentalDetail.userFullName}}</td>
+      <td>{{rentalDetail.carDescription}}</td>
+      <td>{{rentalDetail.rentLocationDescription}}</td>
+      <td>{{rentalDetail.returnLocationDescription}}</td>
+    </tr>
+  </tbody>
+
+</table>
+
