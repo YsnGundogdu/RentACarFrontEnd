@@ -1,7 +1,20 @@
+<!--
 <ul class="list-group">
-  <li class="list-group-item">An item</li>
-  <li class="list-group-item">A second item</li>
-  <li class="list-group-item">A third item</li>
-  <li class="list-group-item">A fourth item</li>
-  <li class="list-group-item">And a fifth one</li>
+  <li (click)="setCurrentSegment(segment)"
+  routerLink = "/cars/segment/{{segment.segmentId}}"
+  *ngFor="let segment of segments" [class]="getCurrentSegmentClass(segment)">{{segment.segmentName}}</li>
 </ul>
+-->
+<div class="collapse show" id="brand-collapse">
+  <div class="card-header"><label for="colorFilter" class="form-label">Model Ara</label>
+    <input
+     type="text"
+     class="form-control"
+     id="brandFilter"
+     placeholder="Arama ifadesi giriniz.."
+    />
+  </div>
+<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+      <li *ngFor="let segment of segments"> <a routerLink="/cars/segment/{{segment.segmentId}}" class="link-dark rounded">{{segment.segmentName}}</a></li>
+  </ul>
+</div>

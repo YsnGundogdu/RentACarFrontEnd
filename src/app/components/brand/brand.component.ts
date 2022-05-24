@@ -11,6 +11,7 @@ export class BrandComponent implements OnInit {
 
   brands: Brand[] = [];
   dataLoaded = false;
+  currentBrand: Brand;
   constructor(private brandService: BrandService) { }
 
   ngOnInit(): void {
@@ -26,4 +27,14 @@ export class BrandComponent implements OnInit {
     })
   }
 
+  setCurrentBrand(brand: Brand) {
+    this.currentBrand = brand;
+  }
+  getCurrentBrandClass(brand:Brand){
+    if(brand == this.currentBrand){
+      return "list-group-item active"
+    }else{
+      return "list-group-item"
+    }
+  }
 }

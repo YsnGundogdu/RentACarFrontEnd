@@ -1,3 +1,4 @@
+<!--
 <div class="d-flex justify-content-center">
   <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
@@ -22,3 +23,91 @@
   </tbody>
 
 </table>
+-->
+<!--
+<h2 class="text-center">Araba Listesi</h2>
+<div *ngIf="dataLoaded==false" class="d-flex justify-content-center">
+    <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+<table *ngIf="dataLoaded==true" class="table table-success table-striped">
+    <thead>
+        <tr>
+            <th>Araba Numarası</th>
+            <th>Marka</th>
+            <th>Segment</th>
+            <th>Renk</th>
+            <th>Günlük Fiyat</th>
+            <th>Model Yılı</th>
+
+        </tr>
+    </thead>
+    <tr routerLink="cars/cardetail/{{car.carId}}" *ngFor="let car of cars">
+
+        <td>{{car.carId}}</td>
+        <td>{{car.brandName}}</td>
+        <td>{{car.segmentName}}</td>
+        <td>{{car.colorName}}</td>
+        <td>{{car.dailyPrice}}</td>
+        <td>{{car.carModelYear}}</td>
+-->
+
+<h4 class="mt-3">ARAÇ LİSTESİ</h4>
+<div class="content">
+  <form class="d-flex md-auto">
+    <input style="width: 91%;" class="form-control me-2" type="text" placeholder="Arama ifadesi giriniz.."
+      aria-label="Organik Arama"/>
+  </form>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <select class="form-select" aria-placeholder="Marka Seçiniz">
+      <option value=0>Marka Seç</option>
+      <option></option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <select class="form-select" aria-label="Default select example">
+      <option value=0>Renk Seç</option>
+      <option >
+      </option>
+    </select>
+  </div>
+  <div class="col-md-3">
+    <button  style="width: 100%;" type="button"
+      class="btn  btn-outline-dark">
+      Filtre
+    </button>
+  </div>
+</div>
+<div class="row mt-4" style="margin-left: 1%;">
+
+  <div *ngFor="let car of cars" class="card mt-2 mr-2"
+    style="width: 18rem;margin-right: 10px;">
+
+    <img *ngIf="car.imagePath" [src]="imageUrl+'/Uploads/Images/'+car.imagePath" class="card-img-top"
+      style="object-fit: cover;" width="100" height="50%" alt="...">
+    <img *ngIf="!car.imagePath" [src]="imageUrl+'/Uploads/Images/DefaultCarImage.png'" class="card-img-top"
+      style="object-fit: cover;" width="100" height="50%" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ car.brandName }}</h5>
+      <p class="card-text">{{ car.carDescription}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Model Yılı : {{ car.segmentName }}</li>
+      <li class="list-group-item">Model Yılı : {{ car.carModelYear }}</li>
+      <li class="list-group-item">Rengi : {{ car.colorName }} </li>
+      <li class="list-group-item">Günlük Fiyatı : {{ car.dailyPrice  | currency: "USD" : true:"1.2-2"}}</li>
+    </ul>
+    <div class="card-body">
+      <div class="row">
+        <button type="button"
+          class="btn btn-outline-dark">Araba Detay</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+

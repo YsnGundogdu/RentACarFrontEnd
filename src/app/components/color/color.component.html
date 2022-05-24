@@ -1,3 +1,4 @@
+<!--
 <div class="d-flex justify-content-center">
   <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
@@ -18,3 +19,24 @@
   </tbody>
 
 </table>
+-->
+<!--
+<ul class="list-group">
+  <li (click)="setCurrentColor(color)"
+  routerLink = "/cars/color/{{color.colorId}}"
+  *ngFor="let color of colors" [class]="getCurrentColorClass(color)">{{color.colorName}}</li>
+</ul>
+-->
+<div class="collapse show" id="color-collapse">
+  <div class="card-header"><label for="colorFilter" class="form-label">Model Ara</label>
+    <input
+     type="text"
+     class="form-control"
+     id="brandFilter"
+     placeholder="Arama ifadesi giriniz.."
+    />
+  </div>
+<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+      <li *ngFor="let color of colors" > <a routerLink="/cars/color/{{color.colorId}}" class="link-dark rounded">{{color.colorName}}</a></li>
+  </ul>
+</div>

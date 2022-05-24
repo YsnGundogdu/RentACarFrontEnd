@@ -1,18 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CustomerDetail } from '../models/customerDetail';
 import { ListResponseModel } from '../models/ListResponseModel';
+import { Segment } from '../models/segment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerDetailService {
-  apiUrl = "https://localhost:44385/api/customers/getcustomerdetails"
+export class SegmentService {
+  apiUrl = "https://localhost:44385/api/segments/getall"
+
   constructor(private httpClient: HttpClient) { }
 
-  getCustomerDetail(): Observable<ListResponseModel<CustomerDetail>> {
+  getSegments(): Observable<ListResponseModel<Segment>> {
     return this.httpClient
-      .get<ListResponseModel<CustomerDetail>>(this.apiUrl)
+      .get<ListResponseModel<Segment>>(this.apiUrl);
   }
 }
