@@ -12,17 +12,20 @@ export class CarDetailComponent implements OnInit {
   carDetails: CarDetail[] = []
   dataLoaded = false;
 
+  //imageUrl = 'https://localhost:44385/';
   constructor(private carDetailService: CarDetailService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     /*
     this.activatedRoute.params.subscribe(params => {
       if (params["segmentId"]) {
-        this.getCarDetailsBySegment(params["segmentId"])
+        this.getCarsBySegmentId(params["segmentId"])
       }else if(params["brandId"]){
-        this.getCarDetailsByBrand(params["brandId"])
+        this.getCarsByBrandId(params["brandId"])
+      }else if(params["colorId"]){
+        this.getCarsByColorId(params["colorId"])
       }else{
-
+        this.getCarDetails()
       }
       */
       this.getCarDetails()
@@ -30,7 +33,7 @@ export class CarDetailComponent implements OnInit {
   }
 
 
-  getCarDetails() {
+  getCarDetails(){
     this.carDetailService
       .getCarDetails()
       .subscribe(response => {
@@ -38,23 +41,31 @@ export class CarDetailComponent implements OnInit {
         this.dataLoaded = true;
       })
   }
-/*
-  getCarDetailsBySegment(segmentId: number) {
+  /*
+  getCarsBySegmentId(segmentId: number) {
     this.carDetailService
-      .getCarDetailsBySegment(segmentId)
+      .getCarsBySegment(segmentId)
       .subscribe(response => {
         this.carDetails = response.data
         this.dataLoaded = true;
       })
   }
 
-  getCarDetailsByBrand(brandId:number){
+  getCarsByBrandId(brandId:number){
     this.carDetailService
-    .getCarDeailsByBrand(brandId)
+    .getCarsByBrand(brandId)
     .subscribe(response=>{
       this.carDetails = response.data
       this.dataLoaded = true
     })
+  }
+  getCarsByColorId(colorId: number) {
+    this.carService
+      .getCarsByColor(colorId)
+      .subscribe(response => {
+        this.cars = response.data
+        this.dataLoaded = true
+      })
   }
   */
 }

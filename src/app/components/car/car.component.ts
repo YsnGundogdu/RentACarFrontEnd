@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
+import { CarImage } from 'src/app/models/carImage';
 import { Color } from 'src/app/models/color';
 import { Segment } from 'src/app/models/segment';
+import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
+import { ColorService } from 'src/app/services/color.service';
 
 
 @Component({
@@ -15,13 +18,27 @@ import { CarService } from 'src/app/services/car.service';
 export class CarComponent implements OnInit {
 
   cars: Car[] = [];
+  carImages:CarImage[];
+  brands:Brand[]=[]
+  colors:Color[]=[]
+  brandFilter:number=0;
+  colorFilter:number=0;
   dataLoaded = false;
   currentCar: Car;
-  constructor(private carService: CarService, private activatedRoute: ActivatedRoute) { }
+  filterText="";
 
-  imageUrl = 'https://localhost:44385/';
+  constructor(
+    private carService: CarService,
+    private activatedRoute: ActivatedRoute,
+    private brandService: BrandService,
+    private colorService: ColorService
+    ) { }
+
+  imageUrl:string = 'https://localhost:44385/Uploads/Images/';
 
   ngOnInit(): void {
+    this.getAllBrands();
+    this.getAllColors();
     this.activatedRoute.params.subscribe(params=>{
       if (params["segmentId"]) {
         this.getCarsBySegmentId(params["segmentId"])
@@ -33,6 +50,7 @@ export class CarComponent implements OnInit {
         this.getCars()
 
     })
+
   }
 
   getCars() {
@@ -43,6 +61,7 @@ export class CarComponent implements OnInit {
       })
 
   }
+
   getCarsBySegmentId(segmentId: number) {
     this.carService
       .getCarsBySegment(segmentId)
@@ -51,6 +70,8 @@ export class CarComponent implements OnInit {
         this.dataLoaded = true
       })
   }
+
+
   getCarsByBrandId(brandId: number) {
     this.carService
       .getCarsByBrand(brandId)
@@ -59,6 +80,8 @@ export class CarComponent implements OnInit {
         this.dataLoaded = true
       })
   }
+
+
   getCarsByColorId(colorId: number) {
     this.carService
       .getCarsByColor(colorId)
@@ -68,10 +91,40 @@ export class CarComponent implements OnInit {
       })
   }
 
+
   getCarDetails(){
     this.carService.getCarDetails().subscribe(response => {
       this.cars = response.data;
       this.dataLoaded = true;
     })
+  }
+
+  getSelectedBrand(brandId: number) {
+    if (this.brandFilter == brandId) return true;
+    else return false;
+  }
+  getAllBrands() {
+    this.brandService.getBrands().subscribe((response) => {
+      this.brands = response.data;
+      console.log(this.brands);
+    });
+  }
+
+  getSelectedColor(colorId: number) {
+    if (this.colorFilter == colorId) return true;
+    else return false;
+  }
+  getAllColors() {
+    this.colorService.getColor().subscribe((response) => {
+      this.colors = response.data;
+      console.log(this.colors);
+    });
+  }
+  getCarDetailByColorAndBrand(colorId: number, brandId: number) {
+    this.carService.getCarDetailByColorAndBrand(colorId, brandId)
+      .subscribe((response) => {
+        console.log(response)
+        this.cars = response.data;
+      });
   }
 }

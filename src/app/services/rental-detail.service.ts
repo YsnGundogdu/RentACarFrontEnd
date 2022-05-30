@@ -8,11 +8,21 @@ import { RentalDetail } from '../models/rentalDetail';
   providedIn: 'root'
 })
 export class RentalDetailService {
-  apiUrl = "https://localhost:44385/api/rentals/getrentaldetails"
-  constructor(private httpClient: HttpClient) { }
 
-  getCustomerDetail(): Observable<ListResponseModel<RentalDetail>> {
+  apiUrl = "https://localhost:44385/api/"
+
+  constructor(
+    private httpClient: HttpClient
+    ) { }
+
+  getRentalDetail(): Observable<ListResponseModel<RentalDetail>> {
+    let newPath = this.apiUrl + "rentals/getrentaldetails"
     return this.httpClient
-    .get<ListResponseModel<RentalDetail>>(this.apiUrl)
+      .get<ListResponseModel<RentalDetail>>(newPath)
+  }
+
+  checkIfCarIsAvailable(carId: number, rentDate: string, returnDate: string): Observable<any> {
+    let newPath = this.apiUrl + "rentals/checkifcarisavailable?carId=${carId}&rentDate=${rentDate}&returnDate=${returnDate}";
+    return this.httpClient.get<any>(newPath);
   }
 }

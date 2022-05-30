@@ -9,5 +9,6 @@ export interface CarDetail{
   colorName:string;
   segmentName:string;
   dailyPrice:number;
-
+  imagePath:string[];
+  carStatus:boolean;
 }

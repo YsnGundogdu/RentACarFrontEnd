@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,13 @@ import { ColorComponent } from './components/color/color.component';
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 import { RentalDetailComponent } from './components/rental-detail/rental-detail.component';
 import { CarImageComponent } from './components/car-image/car-image.component';
+import { CarImageDetailComponent } from './components/car-image-detail/car-image-detail.component';
+import { VatAddedPipe } from './pipes/vat-added.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipePipe } from './pipes/filter-pipe.pipe';
+import {ToastrModule} from "ngx-toastr";
+import { RentingModalComponent } from './components/renting-modal/renting-modal.component'
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,14 +33,26 @@ import { CarImageComponent } from './components/car-image/car-image.component';
     ColorComponent,
     CustomerDetailComponent,
     RentalDetailComponent,
-    CarImageComponent
+    CarImageComponent,
+    CarImageDetailComponent,
+    VatAddedPipe,
+    FilterPipePipe,
+    RentingModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-bottom-right"
+    })
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
