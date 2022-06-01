@@ -11,4 +11,5 @@ export interface RentalDetail{
   carId:number;
   rentDate:Date;
   returnDate?:Date;
+  customerId:number;
 }

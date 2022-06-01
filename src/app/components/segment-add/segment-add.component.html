@@ -1,0 +1,57 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="title">Araba Ekle</h5>
+        <div class="card-body">
+          <form [formGroup]="segmentAddForm">
+<!--
+            <div class="mb-3">
+              <label for="segmentDescription">Segment Açıklaması</label>
+              <div class="form-group">
+                <input type="text" id="segmentDescription" formControlName="segmentDescription" class="form-control"
+                  placeholder="Segment Açıklaması" />
+              </div>
+            </div>
+-->
+            <div class="mb-3">
+              <label for="segmentName">Segment Adı</label>
+              <div class="form-group">
+                <input type="text" id="segmentName" formControlName="segmentName" class="form-control"
+                  placeholder="Segment Adı" />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="segmentId">Günlük Fiyat</label>
+              <div class="form-group">
+                <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control"
+                  placeholder="Günlük Fiyat" />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="brandId">Haftalık Fiyat</label>
+              <div class="form-group">
+                <input type="number" id="weeklyPrice" formControlName="weeklyPrice" class="form-control"
+                  placeholder="Haftalık Fiyat" />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="colorId">Aylık Fiyat</label>
+              <div class="form-group">
+                <input type="number" id="monthlyPrice" formControlName="monthlyPrice" class="form-control"
+                  placeholder="Aylık Fiyat" />
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

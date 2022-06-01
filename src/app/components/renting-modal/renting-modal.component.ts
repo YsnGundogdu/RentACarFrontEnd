@@ -1,8 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Car } from 'src/app/models/car';
+import { CarDetail } from 'src/app/models/carDetail';
+import { CustomerDetail } from 'src/app/models/customerDetail';
+import { RentalDetail } from 'src/app/models/rentalDetail';
+import { PaymentService } from 'src/app/services/payment.service';
 import { RentalDetailService } from 'src/app/services/rental-detail.service';
 
 @Component({
@@ -13,24 +18,27 @@ import { RentalDetailService } from 'src/app/services/rental-detail.service';
 export class RentingModalComponent implements OnInit {
 
   currentDate: any;
+  rentDate: Date;
   returnDate: any;
   isCarAvailable: boolean;
   messageToDisplay: string;
   carId: number;
   isSaveCardChecked: boolean;
-  //cards: Card[];
   hasSavedCard: boolean = false;
-  //cardFromDropdown: Card;
+
+  paymentForm: FormGroup;
+  months: string[] = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+  years: string[] = ["2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033"];
 
   constructor(
-              private rentalDetailService: RentalDetailService,
-              private activatedRoute: ActivatedRoute,
-              private datePipe: DatePipe,
-              private formBuilder: FormBuilder,
-              //private paymentService: PaymentService,
-              private toastrService: ToastrService,
-              //private cardService: CardService
-              ) { }
+    private rentalDetailService: RentalDetailService,
+    private activatedRoute: ActivatedRoute,
+    private datePipe: DatePipe,
+    private formBuilder: FormBuilder,
+    private paymentService: PaymentService,
+    private router: Router,
+    private toastrService: ToastrService,
+  ) { }
 
   ngOnInit(): void {
     this.currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
@@ -54,3 +62,8 @@ export class RentingModalComponent implements OnInit {
 
 
 }
+
+
+
+
+

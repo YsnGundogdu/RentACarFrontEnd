@@ -21,6 +21,12 @@ import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 import {ToastrModule} from "ngx-toastr";
 import { RentingModalComponent } from './components/renting-modal/renting-modal.component'
 import { DatePipe } from '@angular/common';
+import { CarAddComponent } from './components/car-add/car-add.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { SegmentAddComponent } from './components/segment-add/segment-add.component';
+import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
+import { CarEditComponent } from './components/car-edit/car-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +43,14 @@ import { DatePipe } from '@angular/common';
     CarImageDetailComponent,
     VatAddedPipe,
     FilterPipePipe,
-    RentingModalComponent
+    RentingModalComponent,
+    CarAddComponent,
+    BrandAddComponent,
+    ColorAddComponent,
+    SegmentAddComponent,
+    BrandEditComponent,
+    CarEditComponent,
+
   ],
   imports: [
     BrowserModule,

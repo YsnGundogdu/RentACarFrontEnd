@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="">
+    <div class="">
+      <h1 class="display-3">Update Car</h1>
+    </div>
+    <form [formGroup]="carUpdateForm">
+      <div class="row">
+        <div class="col-lg-3 col-sm-12">
+          <div class="mb-3">
+            <label for="brandId" class="form-label">Select Brand</label>
+            <select id="brandId" class="form-select" formControlName="brandId">
+              <option *ngFor="let brand of brands" [ngValue]="brand.brandId">
+                {{ brand.brandName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-12">
+          <div class="mb-3">
+            <label for="colorId" class="form-label">Select Colour</label>
+            <select id="colorId" formControlName="colorId" class="form-select">
+              <option *ngFor="let color of colors" [ngValue]="color.colorId">
+                {{ color.colorName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-12">
+          <div class="mb-3">
+            <label for="segmentId" class="form-label">Select Segment</label>
+            <select id="segmentId" formControlName="segmentId" class="form-select">
+              <option *ngFor="let segment of segments" [ngValue]="segment.segmentId">
+                {{segment.segmentName}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-3">
+            <label for="carModelYear" class="form-label">Model Year</label>
+            <input id="carModelYear" type="number" class="form-control" placeholder="Enter model year"
+                   formControlName="carModelYear"/>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="carDescription" class="form-label">Description</label>
+        <textarea id="carDescription" type="text" class="form-control" placeholder="Enter a description"
+                  formControlName="carDescription" rows="3"></textarea>
+      </div>
+    </form>
+    <div class="">
+      <div class="btn-group float-end" role="group" aria-label="Button Group">
+        <button (click)="deleteCar()" class="btn btn-outline-danger">
+          Delete Car
+        </button>
+
+        <!--<button (click)="update()" class="btn btn-outline-dark">
+          Update Car
+        </button>-->
+      </div>
+    </div>
+  </div>
+</div>
+

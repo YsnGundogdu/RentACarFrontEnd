@@ -108,4 +108,5 @@ export class RentalDetailComponent implements OnInit {
         this.rentalDetails = response.data
       })
   }
+
 }

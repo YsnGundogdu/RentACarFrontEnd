@@ -1,0 +1,74 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h1 class="display-3">Araba Ekle</h1>
+        <div class="card-body">
+          <form [formGroup]="carAddForm">
+
+            <div class="mb-3">
+              <label for="carDescription">Araba Açıklaması</label>
+              <div class="form-group">
+                <!--
+                <input type="text" id="carDescription" formControlName="carDescription" class="form-control"
+                  placeholder="Araba Açıklaması" />
+                 -->
+                  <textarea id="carDescription" type="text" class="form-control" placeholder="Araba Açıklaması"
+                  formControlName="carDescription" rows="3"></textarea>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="carModelYear">Araba Model Yılı</label>
+              <div class="form-group">
+                <input type="number" id="carModelYear" formControlName="carModelYear" class="form-control"
+                  placeholder="Araba Model Yılı" />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="segmentId">Segment Id</label>
+              <div class="form-group">
+                <input type="number" id="segmentId" formControlName="segmentId" class="form-control"
+                  placeholder="Segment Id" />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="brandId">Marka Id</label>
+              <div class="form-group">
+                <input type="number" id="brandId" formControlName="brandId" class="form-control"
+                  placeholder="Marka Id" />
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="colorId">Renk Id</label>
+              <div class="form-group">
+                <input type="number" id="colorId" formControlName="colorId" class="form-control"
+                  placeholder="Renk Id" />
+              </div>
+            </div>
+<!--
+            <div class="mb-3">
+              <label for="carStatus">Araba Statüsü</label>
+
+
+              <div class="form-check">
+                <input class="form-check-label" type="radio" [value]="false" id="carStatus" formControlName="carStatus" /> False
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-label" type="radio" [value]="true" id="carStatus" formControlName="carStatus" /> True
+              </div>
+            </div>
+-->
+          </form>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-fill btn-primary" (click)="add()">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
