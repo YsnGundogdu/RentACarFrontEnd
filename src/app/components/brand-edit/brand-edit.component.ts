@@ -15,9 +15,9 @@ export class BrandEditComponent implements OnInit {
   brandUpdateForm: FormGroup;
 
   brand: Brand = {
-    brandId:0,
-    brandName:"",
-    brandStatus:false
+    brandId: 0,
+    brandName: "",
+    brandStatus: false
   }
 
   constructor(
@@ -30,7 +30,7 @@ export class BrandEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      //this.getById(params['brandId']);
+      this.getById(params['brandId']);
     });
     this.createBrandUpdateFrom();
   }
@@ -38,20 +38,20 @@ export class BrandEditComponent implements OnInit {
   createBrandUpdateFrom() {
     this.brandUpdateForm = this.formBuilder.group({
       brandName: ["", Validators.required],
-      brandStatus:[null,Validators.required]
+      brandStatus: [null, Validators.required]
     });
   }
-/*
+
   getById(brandId: number) {
-      this.brandService.getById(brandId).subscribe((response) => {
+    this.brandService.getById(brandId).subscribe((response) => {
       this.brand = response.data;
       this.brandUpdateForm.controls['brandName'].setValue(this.brand.brandName);
     });
   }
-  */
+
 
   delete() {
-    this.brandService.getById(this.brand.brandId).subscribe(response=>{
+    this.brandService.getById(this.brand.brandId).subscribe(response => {
       console.log(response.data)
     })
     this.brandService.delete(this.brand).subscribe(response => {
@@ -74,6 +74,9 @@ export class BrandEditComponent implements OnInit {
         }
       });
     } else {
+      this.brandService.update(brandModel).subscribe((yanit) => {
+        yanit.success
+      })
       this.toastrService.error("Complete the form!");
     }
   }

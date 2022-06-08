@@ -11,6 +11,8 @@ import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
 import { ColorService } from 'src/app/services/color.service';
 import { SegmentService } from 'src/app/services/segment.service';
+import { CarDetail } from 'src/app/models/carDetail';
+import { CarDetailService } from 'src/app/services/car-detail.service';
 
 @Component({
   selector: 'app-car-edit',
@@ -32,6 +34,7 @@ export class CarEditComponent implements OnInit {
     carDescription:"",
     carModelYear:0,
     carStatus:false
+
   }
 
 
@@ -43,12 +46,12 @@ export class CarEditComponent implements OnInit {
     private segmentService: SegmentService,
     private toastrService: ToastrService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-     // this.getCarById(params["carId"]);
+     this.getCarById(params["carId"]);
     })
     this.getBrands();
     this.getColors();
@@ -64,7 +67,7 @@ export class CarEditComponent implements OnInit {
       segmentId:["",Validators.required],
       carModelYear:["",Validators.required],
       carDescription:["",Validators.required],
-      carStatus:["",Validators.required],
+      carStatus:["",Validators.required]
     })
   }
   getBrands(){
@@ -82,7 +85,7 @@ export class CarEditComponent implements OnInit {
       this.segments = response.data
     })
   }
-  /*
+
   getCarById(carId: number) {
     this.carService.getById(carId).subscribe((response) => {
       this.car = response.data;
@@ -93,11 +96,11 @@ export class CarEditComponent implements OnInit {
       this.carUpdateForm.controls['carDescription'].setValue(this.car.carDescription);
     });
   }
-  */
+
   deleteCar() {
-    this.carService.delete(this.car.carId).subscribe(response => {
+    this.carService.delete(this.car).subscribe(response => {
       this.toastrService.success(response.message);
-      this.router.navigate(["cars"]);
+      this.router.navigate(["cars/color/2"]);
     }, (responseError) => {
       if (responseError.error.Errors) {
         if (responseError.error.Errors.length > 0) {
@@ -110,9 +113,9 @@ export class CarEditComponent implements OnInit {
       }
     })
   }
-  /*
+
   update() {
-    let carModel: PlainCar = Object.assign({id: this.car.carId}, this.carUpdateForm.value);
+    let carModel: Car = Object.assign({id: this.car.carId}, this.carUpdateForm.value);
     if (this.carUpdateForm.valid) {
       this.carService.update(carModel).subscribe((response) => {
           this.toastrService.success("Car is updated successfully.");
@@ -132,5 +135,5 @@ export class CarEditComponent implements OnInit {
       this.toastrService.error("Complete the form!");
     }
   }
-  */
+
 }

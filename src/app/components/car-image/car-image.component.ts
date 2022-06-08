@@ -40,7 +40,7 @@ export class CarImageComponent implements OnInit {
 
   getCarDetailByCarId(carId:number){
     this.carService.getById(carId).subscribe(response=>{
-      this.cars = response.data[0];
+      this.cars = response.data;
     })
   }
 

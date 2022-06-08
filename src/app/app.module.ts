@@ -27,6 +27,7 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
 import { SegmentAddComponent } from './components/segment-add/segment-add.component';
 import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
 import { CarEditComponent } from './components/car-edit/car-edit.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { CarEditComponent } from './components/car-edit/car-edit.component';
     SegmentAddComponent,
     BrandEditComponent,
     CarEditComponent,
+    PaymentComponent,
 
   ],
   imports: [

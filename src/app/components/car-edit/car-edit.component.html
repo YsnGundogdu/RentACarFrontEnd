@@ -37,19 +37,26 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-6">
+        <div class="col-4">
           <div class="mb-3">
             <label for="carModelYear" class="form-label">Model Year</label>
             <input id="carModelYear" type="number" class="form-control" placeholder="Enter model year"
-                   formControlName="carModelYear"/>
+              formControlName="carModelYear" />
           </div>
         </div>
       </div>
+
       <div class="mb-3">
         <label for="carDescription" class="form-label">Description</label>
         <textarea id="carDescription" type="text" class="form-control" placeholder="Enter a description"
-                  formControlName="carDescription" rows="3"></textarea>
+          formControlName="carDescription" rows="3"></textarea>
       </div>
+      <!--
+      <div class="mb-3">
+        <label for="dailyPrice" class="form-label">Daily Price</label>
+        <input type="number" id="dailyPrice" class="form-control" placeholder="Enter a daily price" formControlName="dailyPrice">
+      </div>
+      -->
     </form>
     <div class="">
       <div class="btn-group float-end" role="group" aria-label="Button Group">
@@ -57,11 +64,10 @@
           Delete Car
         </button>
 
-        <!--<button (click)="update()" class="btn btn-outline-dark">
+        <button (click)="update()" class="btn btn-outline-dark">
           Update Car
-        </button>-->
+        </button>
       </div>
     </div>
   </div>
 </div>
-
