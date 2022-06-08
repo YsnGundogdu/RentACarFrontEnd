@@ -37,14 +37,16 @@ export class BrandEditComponent implements OnInit {
 
   createBrandUpdateFrom() {
     this.brandUpdateForm = this.formBuilder.group({
+      brandId: [this.brand.brandId,Validators.required],
       brandName: ["", Validators.required],
-      brandStatus: [null, Validators.required]
+      brandStatus: [true, Validators.required]
     });
   }
 
   getById(brandId: number) {
     this.brandService.getById(brandId).subscribe((response) => {
       this.brand = response.data;
+      this.createBrandUpdateFrom();
       this.brandUpdateForm.controls['brandName'].setValue(this.brand.brandName);
     });
   }
@@ -62,8 +64,9 @@ export class BrandEditComponent implements OnInit {
   }
 
   update() {
-    let brandModel: Brand = Object.assign({ id: this.brand }, this.brandUpdateForm.value);
+    let brandModel: Brand = Object.assign({}, this.brandUpdateForm.value);
     if (this.brandUpdateForm.valid) {
+      console.log(brandModel)
       this.brandService.update(brandModel).subscribe((response) => {
         this.toastrService.success("Brand is successfully updated.");
       }, (responseError) => {
@@ -74,6 +77,7 @@ export class BrandEditComponent implements OnInit {
         }
       });
     } else {
+      console.log(brandModel)
       this.brandService.update(brandModel).subscribe((yanit) => {
         yanit.success
       })

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +28,8 @@ import { SegmentAddComponent } from './components/segment-add/segment-add.compon
 import { BrandEditComponent } from './components/brand-edit/brand-edit.component';
 import { CarEditComponent } from './components/car-edit/car-edit.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     BrandEditComponent,
     CarEditComponent,
     PaymentComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -65,7 +68,11 @@ import { PaymentComponent } from './components/payment/payment.component';
       positionClass:"toast-bottom-right"
     })
   ],
-  providers: [
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:AuthInterceptor,
+    multi:true
+  },
     DatePipe
   ],
   bootstrap: [AppComponent]

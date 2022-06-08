@@ -56,18 +56,18 @@ export class CarEditComponent implements OnInit {
     this.getBrands();
     this.getColors();
     this.getSegments();
-    this.createCarAddForm();
+    this.createCarUpdateForm();
   }
 
-  createCarAddForm(){
+  createCarUpdateForm(){
     this.carUpdateForm = this.formBuilder.group({
-      carId:["",Validators.required],
+      carId:[this.car.carId,Validators.required],
       colorId:["",Validators.required],
       brandId:["",Validators.required],
       segmentId:["",Validators.required],
       carModelYear:["",Validators.required],
       carDescription:["",Validators.required],
-      carStatus:["",Validators.required]
+      carStatus:[true,Validators.required]
     })
   }
   getBrands(){
@@ -89,6 +89,7 @@ export class CarEditComponent implements OnInit {
   getCarById(carId: number) {
     this.carService.getById(carId).subscribe((response) => {
       this.car = response.data;
+      this.createCarUpdateForm()
       this.carUpdateForm.controls['brandId'].setValue(this.car.brandId);
       this.carUpdateForm.controls['colorId'].setValue(this.car.colorId);
       this.carUpdateForm.controls['segmentId'].setValue(this.car.segmentId);
@@ -115,8 +116,9 @@ export class CarEditComponent implements OnInit {
   }
 
   update() {
-    let carModel: Car = Object.assign({id: this.car.carId}, this.carUpdateForm.value);
+    let carModel: Car = Object.assign({}, this.carUpdateForm.value);
     if (this.carUpdateForm.valid) {
+      console.log(carModel)
       this.carService.update(carModel).subscribe((response) => {
           this.toastrService.success("Car is updated successfully.");
         },
@@ -132,6 +134,9 @@ export class CarEditComponent implements OnInit {
           }
         });
     } else {
+      this.carService.update(carModel).subscribe((yanit) => {
+        yanit.success
+      })
       this.toastrService.error("Complete the form!");
     }
   }
